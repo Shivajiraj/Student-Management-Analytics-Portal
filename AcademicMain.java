@@ -46,7 +46,7 @@ public class AcademicMain extends HttpServlet {
 			Connection con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/student_management_system",
 					"root",
-					"934600");
+					"password");
 
 			PreparedStatement ps = con.prepareStatement(
 
