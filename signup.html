@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Create Account</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --bg-dark:#0a0e27;
+    --bg-darker:#050810;
+
+    --accent-gold:#d4af37;
+    --accent-purple:#a855f7;
+    --accent-cyan:#06b6d4;
+
+    --text-primary:#f0f4f8;
+    --text-secondary:#b0bcc4;
+}
+
+body{
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--bg-darker),
+    #111827);
+
+    font-family:'Poppins',sans-serif;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    overflow-y:auto;
+}
+
+/* ================= MAIN CONTAINER ================= */
+
+.main-container{
+
+    width:1400px;
+
+    max-width:100%;
+
+    min-height:760px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 520px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:
+    rgba(15,23,42,0.75);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* ================= LEFT SIDE ================= */
+
+.left-side{
+
+    padding:80px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    background:
+    radial-gradient(
+    circle at top left,
+    rgba(168,85,247,0.18),
+    transparent 40%);
+}
+
+.logo-box{
+
+    width:100px;
+
+    height:100px;
+
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--accent-purple),
+    var(--accent-cyan));
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:45px;
+
+    color:white;
+
+    margin-bottom:40px;
+}
+
+.left-side h1{
+
+    font-size:70px;
+
+    color:white;
+
+    margin-bottom:20px;
+
+    font-family:'Space Grotesk',sans-serif;
+}
+
+.left-side p{
+
+    color:var(--text-secondary);
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    max-width:650px;
+
+    margin-bottom:50px;
+}
+
+.features{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+}
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    color:white;
+
+    font-size:18px;
+}
+
+.feature i{
+
+    color:var(--accent-cyan);
+
+    font-size:22px;
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.right-side{
+
+    background:
+    rgba(255,255,255,0.03);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:40px 60px;
+}
+
+.signup-container{
+
+    width:100%;
+}
+
+.signup-container h2{
+
+    font-size:42px;
+
+    color:white;
+
+    margin-bottom:10px;
+
+    font-family:'Space Grotesk',sans-serif;
+}
+
+.subtitle{
+
+    color:var(--text-secondary);
+
+    margin-bottom:40px;
+}
+
+/* ================= INPUT ================= */
+
+.input-group{
+
+    margin-bottom:25px;
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:12px;
+
+    color:var(--accent-gold);
+
+    font-size:14px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+}
+
+.input-wrapper{
+
+    position:relative;
+}
+
+.input-wrapper i{
+
+    position:absolute;
+
+    left:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:var(--accent-purple);
+}
+
+.input-wrapper input{
+
+    width:100%;
+
+    padding:18px 18px 18px 55px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    background:
+    rgba(255,255,255,0.05);
+
+    color:white;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:0.3s;
+}
+
+.input-wrapper input::placeholder{
+
+    color:#94a3b8;
+}
+
+.input-wrapper input:focus{
+
+    border-color:var(--accent-purple);
+
+    box-shadow:
+    0 0 20px rgba(168,85,247,0.25);
+}
+
+/* ================= BUTTON ================= */
+
+.signup-btn{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:
+    linear-gradient(
+    135deg,
+    var(--accent-purple),
+    var(--accent-cyan));
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    margin-top:10px;
+}
+
+.signup-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 10px 30px rgba(168,85,247,0.3);
+}
+
+/* ================= LINKS ================= */
+
+.login-link{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:var(--text-secondary);
+}
+
+.login-link a{
+
+    color:var(--accent-gold);
+
+    text-decoration:none;
+
+    transition:0.3s;
+}
+
+.login-link a:hover{
+
+    color:var(--accent-cyan);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .main-container{
+
+        grid-template-columns:1fr;
+    }
+
+    .left-side{
+
+        display:none;
+    }
+
+    .right-side{
+
+        padding:40px 30px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <!-- ================= LEFT SIDE ================= -->
+
+    <div class="left-side">
+
+        <div class="logo-box">
+
+            <i class="fas fa-user-plus"></i>
+
+        </div>
+
+        <h1>Join SchoolERP</h1>
+
+        <p>
+
+            Create your account and access a modern
+            student management platform with analytics,
+            academics, attendance and more.
+
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+
+                <i class="fas fa-chart-line"></i>
+
+                <span>Advanced Analytics</span>
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fas fa-user-graduate"></i>
+
+                <span>Manage Student Records</span>
+
+            </div>
+
+            <div class="feature">
+
+                <i class="fas fa-lock"></i>
+
+                <span>Secure Account System</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= RIGHT SIDE ================= -->
+
+    <div class="right-side">
+
+        <div class="signup-container">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+
+                Register to continue
+
+            </p>
+
+            <form action="SignupServlet"
+                  method="post">
+
+                <!-- FULL NAME -->
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fas fa-user"></i>
+
+                        <input type="text"
+                               name="name"
+                               placeholder="Enter your full name"
+                               required>
+
+                    </div>
+
+                </div>
+
+                <!-- EMAIL -->
+
+                <div class="input-group">
+
+                    <label>Email Address</label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fas fa-envelope"></i>
+
+                        <input type="email"
+                               name="email"
+                               placeholder="Enter your email"
+                               required>
+
+                    </div>
+
+                </div>
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fas fa-lock"></i>
+
+                        <input type="password"
+                               name="password"
+                               placeholder="Create password"
+                               required>
+
+                    </div>
+
+                </div>
+
+                <!-- BUTTON -->
+
+                <button type="submit"
+                        class="signup-btn">
+
+                    <i class="fas fa-user-plus"></i>
+
+                    Create Account
+
+                </button>
+
+            </form>
+
+            <!-- LOGIN -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="LoginPage.html">
+
+                    Login
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0e27;
+            --bg-darker: #050810;
+            --bg-card: rgba(20, 28, 52, 0.6);
+            --border-color: rgba(168, 85, 247, 0.2);
+            --accent-gold: #d4af37;
+            --accent-purple: #a855f7;
+            --accent-cyan: #06b6d4;
+            --text-primary: #f0f4f8;
+            --text-secondary: #b0bcc4;
+            --glow-purple: rgba(168, 85, 247, 0.3);
+        }
+
+        html, body {
+            width: 100%;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-darker) 0%, #1a1f3a 100%);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ================= NAVBAR ================= */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 60px;
+            background: linear-gradient(90deg, rgba(10, 14, 39, 0.95) 0%, rgba(20, 28, 52, 0.95) 100%);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-purple);
+            -webkit-text-fill-color: var(--accent-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ================= HERO ================= */
+        .hero {
+            text-align: center;
+            padding: 100px 40px;
+            animation: fadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-purple) 50%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.8;
+            animation: slideInUp 0.8s ease-out 0.1s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= STATS ================= */
+        .stats {
+            width: 90%;
+            max-width: 1200px;
+            margin: 60px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            animation: fadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.6s ease-out both;
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, var(--glow-purple) 50%, transparent 100%);
+            transition: left 0.5s ease;
+            z-index: 0;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.15),
+                        inset 0 0 20px rgba(168, 85, 247, 0.05);
+        }
+
+        .stat-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-card i {
+            font-size: 48px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .stat-card h2 {
+            font-size: 40px;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ================= GALLERY ================= */
+        .gallery {
+            width: 90%;
+            max-width: 1200px;
+            margin: 80px auto;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .gallery-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            font-size: 40px;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .gallery-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            aspect-ratio: 1;
+            animation: slideInUp 0.6s ease-out both;
+        }
+
+        .image-container:nth-child(1) { animation-delay: 0.1s; }
+        .image-container:nth-child(2) { animation-delay: 0.2s; }
+        .image-container:nth-child(3) { animation-delay: 0.3s; }
+
+        .image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(6, 182, 212, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .image-container:hover::before {
+            opacity: 1;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .image-container:hover img {
+            transform: scale(1.1);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            margin-top: 80px;
+            font-size: 14px;
+            animation: fadeIn 0.8s ease-out 0.5s both;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* ================= SCROLLBAR ================= */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(168, 85, 247, 0.05);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-gold) 0%, var(--accent-purple) 100%);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px 30px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                font-size: 12px;
+            }
+
+            .hero {
+                padding: 60px 30px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .stats {
+                width: 95%;
+            }
+
+            .gallery {
+                width: 95%;
+            }
+
+            .gallery h2 {
+                font-size: 28px;
+            }
+
+            .images {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            .image-container {
+                aspect-ratio: 1;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <div class="navbar">
+        <div class="logo">
+            Student<span>Portal</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="userHome.html">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#">
+                <i class="fas fa-bell"></i> Announcements
+            </a>
+            <a href="#">
+                <i class="fas fa-file-alt"></i> Results
+            </a>
+            <a href="#">
+                <i class="fas fa-calendar-check"></i> Attendance
+            </a>
+            <a href="LogoutServlet">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <h1>Welcome Back, Student</h1>
+        <p>
+            Explore your student portal with exclusive access to school updates, statistics, 
+            academic results, attendance records, and event highlights. Stay connected with your school community!
+        </p>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="stats">
+        <div class="stat-card">
+            <div class="stat-content">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h2>1500+</h2>
+                <p>Active Students</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h2>120+</h2>
+                <p>Expert Teachers</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <i class="fa-solid fa-medal"></i>
+                <h2>98%</h2>
+                <p>Success Rate</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-content">
+                <i class="fa-solid fa-school"></i>
+                <h2>25+</h2>
+                <p>Departments</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section class="gallery">
+        <div class="gallery-header">
+            <h2>✨ School Gallery</h2>
+            <p class="gallery-subtitle">Explore memorable moments and achievements</p>
+        </div>
+
+        <div class="images">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&h=500&fit=crop" alt="School event">
+            </div>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?w=500&h=500&fit=crop" alt="Students studying">
+            </div>
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=500&fit=crop" alt="Classroom activity">
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>© 2024 SchoolERP - Student Portal. All rights reserved.</p>
+        <p>Crafted with <span style="color: var(--accent-purple);">♥</span> for your academic journey</p>
+    </footer>
+
+</body>
+</html>

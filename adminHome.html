@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        :root{
+
+            --bg-dark:#0a0e27;
+            --bg-darker:#050810;
+            --bg-card:rgba(20,28,52,0.6);
+
+            --border-color:rgba(168,85,247,0.2);
+
+            --accent-gold:#d4af37;
+            --accent-purple:#a855f7;
+            --accent-cyan:#06b6d4;
+
+            --text-primary:#f0f4f8;
+            --text-secondary:#b0bcc4;
+
+            --glow-purple:rgba(168,85,247,0.3);
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        body{
+
+            display:flex;
+
+            background:linear-gradient(
+            135deg,
+            var(--bg-darker) 0%,
+            #1a1f3a 100%);
+
+            color:var(--text-primary);
+
+            min-height:100vh;
+
+            font-family:'Poppins',sans-serif;
+
+            overflow-x:hidden;
+        }
+
+        body::before{
+
+            content:'';
+
+            position:fixed;
+
+            top:0;
+            left:0;
+
+            width:100%;
+            height:100%;
+
+            background:
+            radial-gradient(circle at 20% 50%,
+            rgba(168,85,247,0.05) 0%,
+            transparent 50%),
+
+            radial-gradient(circle at 80% 80%,
+            rgba(6,182,212,0.05) 0%,
+            transparent 50%);
+
+            pointer-events:none;
+
+            z-index:-1;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+
+            width:260px;
+
+            background:linear-gradient(
+            180deg,
+            rgba(10,14,39,0.95) 0%,
+            rgba(20,28,52,0.95) 100%);
+
+            padding:40px 25px;
+
+            position:fixed;
+
+            height:100vh;
+
+            border-right:1px solid var(--border-color);
+
+            backdrop-filter:blur(10px);
+        }
+
+        .logo{
+
+            font-size:28px;
+
+            font-weight:700;
+
+            margin-bottom:60px;
+
+            font-family:'Space Grotesk',sans-serif;
+
+            background:linear-gradient(
+            135deg,
+            var(--text-primary) 0%,
+            var(--accent-gold) 100%);
+
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        .logo span{
+
+            color:var(--accent-purple);
+
+            -webkit-text-fill-color:var(--accent-purple);
+        }
+
+        .menu{
+
+            display:flex;
+
+            flex-direction:column;
+
+            gap:12px;
+        }
+
+        .menu a{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:15px;
+
+            color:var(--text-secondary);
+
+            padding:16px 18px;
+
+            border-radius:12px;
+
+            transition:0.3s;
+
+            border:1px solid transparent;
+        }
+
+        .menu a:hover{
+
+            color:white;
+
+            border-color:var(--accent-purple);
+
+            background:rgba(168,85,247,0.1);
+
+            transform:translateX(6px);
+        }
+
+        .menu a i{
+
+            color:var(--accent-purple);
+
+            font-size:18px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main{
+
+            margin-left:260px;
+
+            width:calc(100% - 260px);
+
+            padding:50px 45px;
+        }
+
+        .topbar{
+
+            margin-bottom:50px;
+        }
+
+        .topbar h1{
+
+            font-size:42px;
+
+            font-family:'Space Grotesk',sans-serif;
+
+            background:linear-gradient(
+            135deg,
+            var(--accent-gold) 0%,
+            var(--accent-purple) 100%);
+
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards{
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(260px,1fr));
+
+            gap:30px;
+        }
+
+        .card{
+
+            background:var(--bg-card);
+
+            padding:35px;
+
+            border-radius:18px;
+
+            border:1px solid var(--border-color);
+
+            backdrop-filter:blur(10px);
+
+            transition:0.3s;
+
+            cursor:pointer;
+        }
+
+        .card:hover{
+
+            transform:translateY(-10px);
+
+            border-color:var(--accent-purple);
+
+            box-shadow:
+            0 20px 40px rgba(168,85,247,0.15);
+        }
+
+        .card i{
+
+            font-size:45px;
+
+            background:linear-gradient(
+            135deg,
+            var(--accent-purple),
+            var(--accent-cyan));
+
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+
+            margin-bottom:20px;
+        }
+
+        .card h2{
+
+            font-size:24px;
+
+            margin-bottom:12px;
+
+            font-family:'Space Grotesk',sans-serif;
+        }
+
+        .card p{
+
+            color:var(--text-secondary);
+
+            line-height:1.6;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+
+            Admin<span>Panel</span>
+
+        </div>
+
+        <div class="menu">
+
+            <a href="adminHome.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="basic.html">
+
+                <i class="fa-solid fa-user-plus"></i>
+
+                Add Student
+
+            </a>
+
+            <a href="ViewStudents">
+
+                <i class="fa-solid fa-users"></i>
+
+                View Students
+
+            </a>
+
+            <a href="academic.html">
+
+                <i class="fa-solid fa-book"></i>
+
+                Academic
+
+            </a>
+
+            <a href="analytics.html">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                Analytics
+
+            </a>
+
+            <a href="LogoutServlet">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="main">
+
+        <div class="topbar">
+
+            <h1>✨ Admin Dashboard</h1>
+
+        </div>
+
+        <div class="cards">
+
+            <a href="basic.html">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    <h2>Add Student</h2>
+
+                    <p>
+
+                        Add and manage student records
+                        inside the system.
+
+                    </p>
+
+                </div>
+
+            </a>
+
+            <a href="ViewStudents">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h2>View Students</h2>
+
+                    <p>
+
+                        View all students and
+                        their complete details.
+
+                    </p>
+
+                </div>
+
+            </a>
+
+            <a href="academic.html">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                    <h2>Academics</h2>
+
+                    <p>
+
+                        Update CGPA, branch and
+                        academic performance.
+
+                    </p>
+
+                </div>
+
+            </a>
+
+            <a href="analytics.html">
+
+                <div class="card">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                    <h2>Analytics</h2>
+
+                    <p>
+
+                        View live statistics,
+                        charts and system reports.
+
+                    </p>
+
+                </div>
+
+            </a>
+            
+            <a href="updateStudent.jsp">
+
+    		<div class="card">
+
+        <i class="fa-solid fa-pen-to-square"></i>
+
+        <h2>Update Student</h2>
+
+        <p>
+
+            Update existing student details
+            using student ID.
+
+        </p>
+
+    </div>
+
+</a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
