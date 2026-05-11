@@ -105,7 +105,7 @@ public class ViewStudents extends HttpServlet {
 
 			out.println("<h1>Student Records</h1>");
 
-			out.println("<a href='home.html' class='home-btn'>⬅ Back Home</a>");
+			out.println("<a href='adminHome.html' class='home-btn'>⬅ Back Home</a>");
 
 			out.println("</div>");
 
