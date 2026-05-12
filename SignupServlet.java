@@ -31,10 +31,10 @@ public class SignupServlet extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             Connection con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/student_management_system",
-                "root",
-                "934600"
-            );
+            	    "jdbc:mysql://trolley.proxy.rlwy.net:20416/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
+            	    "root",
+            	    "roasjGBKmitUikschrYkKXEvRavKOTsH"
+            	);
 
             String query =
             "INSERT INTO users(name,email,password,role) VALUES(?,?,?,'user')";
