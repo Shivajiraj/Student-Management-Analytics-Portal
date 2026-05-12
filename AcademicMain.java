@@ -44,9 +44,10 @@ public class AcademicMain extends HttpServlet {
 
 
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/student_management_system",
-					"root",
-					"password");
+            	    "jdbc:mysql://trolley.proxy.rlwy.net:20416/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC",
+            	    "root",
+            	    "roasjGBKmitUikschrYkKXEvRavKOTsH"
+            	);
 
 			PreparedStatement ps = con.prepareStatement(
 
