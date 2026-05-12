@@ -18,9 +18,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class AnalyticsServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/student_management_system";
+    private static final String DB_URL = "jdbc:mysql://trolley.proxy.rlwy.net:20416/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "934600";
+    private static final String DB_PASSWORD = "roasjGBKmitUikschrYkKXEvRavKOTsH";
     private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
